@@ -56,11 +56,10 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main' > /et
 RUN npm install -g rtlcss
 
 # Install Odoo
-ENV ODOO_VERSION master
-ENV ODOO_DEV 17.1alpha1
+ENV ODOO_VERSION 17.0
 ARG ODOO_RELEASE=20231106
-ARG ODOO_SHA=6ca8665341f247fef989b0ef869ea633b803f358
-RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_DEV}.${ODOO_RELEASE}_all.deb \
+ARG ODOO_SHA=613191029cb5fcf355ea42975137d331b541a68c
+RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
     && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
     && apt-get update \
     && apt-get -y install --no-install-recommends ./odoo.deb \
